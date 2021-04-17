@@ -1,0 +1,8 @@
+/dist/
+<<<<<<< HEAD
+/build/
+/nbproject/private/
+=======
+/nbproject/private/
+/build/
+>>>>>>> origin/Alpha
