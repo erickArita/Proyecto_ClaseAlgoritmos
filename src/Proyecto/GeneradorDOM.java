@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -22,15 +23,15 @@ public class GeneradorDOM {
     public Persona per = new Persona();
 
     public void initElementsFile() throws IOException, JDOMException {
-        
+
         File xmlFile = new File("registro.xml");
 
         if (xmlFile.exists()) {
             FileInputStream fis = new FileInputStream(xmlFile);
-                SAXBuilder sb = new SAXBuilder();
-                doc = sb.build(fis);
-                personas = doc.detachRootElement();
-                
+            SAXBuilder sb = new SAXBuilder();
+            doc = sb.build(fis);
+            personas = doc.detachRootElement();
+
         } else {
             doc = new Document();
             personas = new Element("Personas");
@@ -38,7 +39,6 @@ public class GeneradorDOM {
         }
 
     }
-   
 
     public void addPerson() throws IOException {
 
@@ -61,7 +61,6 @@ public class GeneradorDOM {
         dni.setText(Integer.toString(per.getDni()));
 
         Element persona = new Element("persona");
-        
 
         persona.addContent(nombre);
         persona.addContent(apellido);
@@ -73,11 +72,32 @@ public class GeneradorDOM {
         personas.addContent(persona);
 
         doc.addContent(personas);
-        
 
         xml = new XMLOutputter();
         xml.setFormat(Format.getPrettyFormat());
         xml.output(doc, new FileWriter("registro.xml"));
 
+    }
+
+    public ArrayList<Persona> getPersons() {
+        initElementsFile();
+        List<Element> persona = personas.getChildren();
+        ArrayList<Persona> personList = new ArrayList();
+
+        for (Element personaAtributes : persona) {
+            Persona personaObject = new Persona();
+            List<Element> atributes = personaAtributes.getChildren();
+            ArrayList<String> atributesList = new ArrayList();
+            atributes.forEach((atribute) -> atributesList.add(atribute.getText()));
+
+            personaObject.setNombre(atributesList.get(0));
+            personaObject.setApellido(atributesList.get(1));
+            personaObject.setDni(Integer.parseInt(atributesList.get(2)));
+            personaObject.setEdad(Integer.parseInt(atributesList.get(3)));
+            personaObject.setSexo(atributesList.get(4));
+            personaObject.setNacionalidad(atributesList.get(5));
+            personList.add(personaObject);
+        }
+        return personList;
     }
 }
