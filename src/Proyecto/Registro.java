@@ -6,6 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Action;
 import javax.swing.WindowConstants;
 import org.jdom2.JDOMException;
 
@@ -43,6 +44,7 @@ public class Registro extends javax.swing.JFrame {
         jTextApellido = new javax.swing.JTextField();
         jTextEdad = new javax.swing.JTextField();
         jTextDni = new javax.swing.JTextField();
+        jLabelLlenarAll = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -168,6 +170,14 @@ public class Registro extends javax.swing.JFrame {
         jTextDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(jTextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
 
+        jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+        jLabelLlenarAll.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLlenarAll.setText("Rellene todos los espacios");
+        jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelLlenarAll.setVisible(false);
+        jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 360, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         pack();
@@ -175,28 +185,42 @@ public class Registro extends javax.swing.JFrame {
 
     private void btnAddRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRegistroActionPerformed
 
-        objDom.per.setNombre(jTextNombre.getText());
-        objDom.per.setApellido(jTextApellido.getText());
-        objDom.per.setNacionalidad(jTextNacionalidad.getText());
-        objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
-        objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
-        objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+        if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
+                jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
             
+            objDom.per.setNombre(jTextNombre.getText());
+            objDom.per.setApellido(jTextApellido.getText());
+            objDom.per.setNacionalidad(jTextNacionalidad.getText());
+            objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
+            objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
+            objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+            
+            jTextNombre.setText("");
+            jTextApellido.setText("");
+            jTextNacionalidad.setText("");
+            jTextEdad.setText(null);
+            jTextDni.setText(null);
+            
+            
+            //Va a escribir al documento.
+            try {
+                objDom.initElementsFile();
+            } catch (IOException | JDOMException ex) {
+                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                objDom.addPerson();
+            } catch (IOException ex) {
+                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } 
         
-        try {
-            objDom.initElementsFile();
-        } catch (IOException | JDOMException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
 
-        try {
-            objDom.addPerson();
-        } catch (IOException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        this.dispose();
+
+
     }//GEN-LAST:event_btnAddRegistroActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -220,6 +244,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelApellido;
     private javax.swing.JLabel jLabelEdad;
     private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelLlenarAll;
     private javax.swing.JLabel jLabelNacionalidad;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelSexo;
@@ -230,4 +255,19 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextNacionalidad;
     private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validarDatosVacios(String text, String text0,
+            String text1, String text2, String text3) {
+        if (text.equals("") || text0.equals("") || text1.equals("")
+                || text2.equals("") || text3.equals("")) {
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+            jLabelLlenarAll.setVisible(true);
+            jLabelLlenarAll.setText("Persona añadida");
+            return true;
+        }
+
+    }
 }
