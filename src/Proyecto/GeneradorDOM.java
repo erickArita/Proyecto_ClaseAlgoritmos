@@ -15,16 +15,16 @@ import org.jdom2.output.XMLOutputter;
 
 public class GeneradorDOM {
 
-    //Nodos
     private XMLOutputter xml;
     private Element personas = null;
     private Document doc = null;
-    //Objeto Persona    
+    //Objeto Clase Persona    
     public Persona per = new Persona();
 
     public void initElementsFile() throws IOException, JDOMException {
-
+        
         File xmlFile = new File("registro.xml");
+
         if (xmlFile.exists()) {
             FileInputStream fis = new FileInputStream(xmlFile);
                 SAXBuilder sb = new SAXBuilder();
@@ -38,7 +38,7 @@ public class GeneradorDOM {
         }
 
     }
-    //Objeto Persona    
+   
 
     public void addPerson() throws IOException {
 

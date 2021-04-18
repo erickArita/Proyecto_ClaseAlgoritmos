@@ -24,6 +24,8 @@ public class Consulta extends javax.swing.JFrame {
         jPanelPrincipal = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
         jLabelConsulta = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableDatos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,6 +52,21 @@ public class Consulta extends javax.swing.JFrame {
         jLabelConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanelPrincipal.add(jLabelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 60));
 
+        jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "DNI", "Nacionalidad", "Sexo"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableDatos);
+
+        jPanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 930, -1));
+
         getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         pack();
@@ -65,5 +82,7 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JLabel jLabelConsulta;
     private javax.swing.JPanel jPanelPrincipal;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableDatos;
     // End of variables declaration//GEN-END:variables
 }

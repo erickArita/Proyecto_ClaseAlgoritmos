@@ -7,6 +7,9 @@ import javax.swing.WindowConstants;
 
 public class Edicion extends javax.swing.JFrame {
 
+    GeneradorDOM objDom = new GeneradorDOM();
+    Registro reg = new Registro();
+
     public Edicion() {
         this.setUndecorated(true);
         initComponents();
@@ -35,8 +38,8 @@ public class Edicion extends javax.swing.JFrame {
         jTextNombre = new javax.swing.JTextField();
         jTextApellido = new javax.swing.JTextField();
         jTextEdad = new javax.swing.JTextField();
-        jTextID = new javax.swing.JTextField();
-        jLabelMessage = new javax.swing.JLabel();
+        jTextDni = new javax.swing.JTextField();
+        jLabelLlenarAll = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,7 +79,7 @@ public class Edicion extends javax.swing.JFrame {
         jLabelID.setFont(new java.awt.Font("SimSun", 1, 27)); // NOI18N
         jLabelID.setForeground(new java.awt.Color(249, 255, 255));
         jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelID.setText("ID:");
+        jLabelID.setText("DNI:");
         jLabelID.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 500, -1));
 
@@ -138,16 +141,18 @@ public class Edicion extends javax.swing.JFrame {
         jTextEdad.setEnabled(false);
         jPanel1.add(jTextEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 350, -1));
 
-        jTextID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTextID.setForeground(new java.awt.Color(0, 0, 28));
-        jTextID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
+        jTextDni.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jTextDni.setForeground(new java.awt.Color(0, 0, 28));
+        jTextDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(jTextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
 
-        jLabelMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelMessage.setForeground(new java.awt.Color(255, 45, 0));
-        jLabelMessage.setText("Rellene los datos de la persona a editar");
-        jLabelMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 350, 30));
+        jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+        jLabelLlenarAll.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLlenarAll.setText("Rellene todos los datos");
+        jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelLlenarAll.setVisible(false);
+        jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 350, 30));
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnCerrar.png"))); // NOI18N
         btnCerrar.setBorderPainted(false);
@@ -167,6 +172,63 @@ public class Edicion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEdit_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_SaveActionPerformed
+        if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
+                jTextDni.getText())) {
+
+            objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+            objDom.per.setNombre(jTextNombre.getText());
+            objDom.per.setApellido(jTextApellido.getText());
+            newIcon();
+            btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
+
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnEdit_SaveActionPerformedSave(evt);
+                }
+            });
+        }
+
+    }//GEN-LAST:event_btnEdit_SaveActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) {
+        if (reg.validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
+                jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())){
+                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+                objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
+                objDom.per.setNombre(jTextNombre.getText());
+                objDom.per.setApellido(jTextApellido.getText());
+                objDom.per.setNacionalidad(jTextNacionalidad.getText());
+                objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
+                
+                
+        }
+        this.dispose();
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnEdit_Save;
+    private javax.swing.JComboBox<String> jComboBoxSexo;
+    private javax.swing.JLabel jLabelApellido;
+    private javax.swing.JLabel jLabelEdad;
+    private javax.swing.JLabel jLabelEditPerson;
+    private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelLlenarAll;
+    private javax.swing.JLabel jLabelNacionalidad;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelSexo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextDni;
+    private javax.swing.JTextField jTextEdad;
+    private javax.swing.JTextField jTextNacionalidad;
+    private javax.swing.JTextField jTextNombre;
+    // End of variables declaration//GEN-END:variables
+
+    private void newIcon() {
         jTextEdad.setEnabled(true);
         jTextNacionalidad.setEnabled(true);
         jComboBoxSexo.setEnabled(true);
@@ -181,43 +243,21 @@ public class Edicion extends javax.swing.JFrame {
         btnEdit_Save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit_Save.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona2.png"))); // NOI18N
         btnEdit_Save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabelMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelMessage.setForeground(new java.awt.Color(255, 45, 0));
-        jLabelMessage.setText("Ingrese los nuevos datos");
-        jLabelMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
-        btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEdit_SaveActionPerformedSave(evt);
-            }
-        });
-    }//GEN-LAST:event_btnEdit_SaveActionPerformed
-
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnCerrarActionPerformed
-
-    private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) {
-        this.dispose();
+        jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18));
+        jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+        jLabelLlenarAll.setText("Ingrese los nuevos datos");
+        jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnEdit_Save;
-    private javax.swing.JComboBox<String> jComboBoxSexo;
-    private javax.swing.JLabel jLabelApellido;
-    private javax.swing.JLabel jLabelEdad;
-    private javax.swing.JLabel jLabelEditPerson;
-    private javax.swing.JLabel jLabelID;
-    private javax.swing.JLabel jLabelMessage;
-    private javax.swing.JLabel jLabelNacionalidad;
-    private javax.swing.JLabel jLabelNombre;
-    private javax.swing.JLabel jLabelSexo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextApellido;
-    private javax.swing.JTextField jTextEdad;
-    private javax.swing.JTextField jTextID;
-    private javax.swing.JTextField jTextNacionalidad;
-    private javax.swing.JTextField jTextNombre;
-    // End of variables declaration//GEN-END:variables
+    private boolean validarDatosVacios(String text, String text0, String text1) {
+        if (text.equals("") || text0.equals("") || text1.equals("")) {
+            jLabelLlenarAll.setText("Rellene todos los datos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
