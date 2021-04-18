@@ -2,11 +2,10 @@ package Proyecto;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashSet;
+import java.util.Set;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -18,24 +17,24 @@ public class GeneradorDOM {
 
     //Nodos
     private XMLOutputter xml;
-    private Element root = null;
+    private Element personas = null;
     private Document doc = null;
     //Objeto Persona    
     public Persona per = new Persona();
 
-    public void initElements() throws IOException, JDOMException {
+    public void initElementsFile() throws IOException, JDOMException {
 
         File xmlFile = new File("registro.xml");
         if (xmlFile.exists()) {
             FileInputStream fis = new FileInputStream(xmlFile);
-            SAXBuilder sb = new SAXBuilder();
-            doc = sb.build(fis);
-            root = doc.getRootElement();
-            fis.close();
-
+                SAXBuilder sb = new SAXBuilder();
+                doc = sb.build(fis);
+                personas = doc.detachRootElement();
+                
         } else {
             doc = new Document();
-            root = new Element("registro");
+            personas = new Element("Personas");
+
         }
 
     }
@@ -62,17 +61,19 @@ public class GeneradorDOM {
         dni.setText(Integer.toString(per.getDni()));
 
         Element persona = new Element("persona");
-        Element personas = new Element("personas");
+        
 
         persona.addContent(nombre);
-        persona.addContent(sexo);
-        persona.addContent(edad);
-        persona.addContent(nacionalidad);
-        persona.addContent(dni);
         persona.addContent(apellido);
+        persona.addContent(dni);
+        persona.addContent(edad);
+        persona.addContent(sexo);
+        persona.addContent(nacionalidad);
+
         personas.addContent(persona);
-        root.addContent(personas);
-        doc.setContent(root);
+
+        doc.addContent(personas);
+        
 
         xml = new XMLOutputter();
         xml.setFormat(Format.getPrettyFormat());

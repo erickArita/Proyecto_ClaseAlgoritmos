@@ -184,10 +184,8 @@ public class Registro extends javax.swing.JFrame {
             
         
         try {
-            objDom.initElements();
-        } catch (IOException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JDOMException ex) {
+            objDom.initElementsFile();
+        } catch (IOException | JDOMException ex) {
             Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
         }
        
