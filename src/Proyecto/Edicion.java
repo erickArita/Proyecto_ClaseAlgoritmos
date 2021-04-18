@@ -174,17 +174,18 @@ public class Edicion extends javax.swing.JFrame {
     private void btnEdit_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_SaveActionPerformed
         if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
                 jTextDni.getText())) {
+            if (validarNumeros(jTextDni.getText())) {
+                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+                objDom.per.setNombre(jTextNombre.getText());
+                objDom.per.setApellido(jTextApellido.getText());
+                
+                btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
 
-            objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
-            objDom.per.setNombre(jTextNombre.getText());
-            objDom.per.setApellido(jTextApellido.getText());
-            newIcon();
-            btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
-
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    btnEdit_SaveActionPerformedSave(evt);
-                }
-            });
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        btnEdit_SaveActionPerformedSave(evt);
+                    }
+                });
+            }
         }
 
     }//GEN-LAST:event_btnEdit_SaveActionPerformed
@@ -194,18 +195,22 @@ public class Edicion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) {
-        if (reg.validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
-                jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())){
-                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
-                objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
+        newIcon();
+        if (validarDatosVacios2(jTextNombre.getText(), jTextApellido.getText(),
+                jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
+            if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
+
                 objDom.per.setNombre(jTextNombre.getText());
                 objDom.per.setApellido(jTextApellido.getText());
+                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+                objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
                 objDom.per.setNacionalidad(jTextNacionalidad.getText());
                 objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
+
+                this.dispose();
                 
-                
-        }
-        this.dispose();
+            }//Fin segundo if
+        }//Fin primer if
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -256,7 +261,43 @@ public class Edicion extends javax.swing.JFrame {
             jLabelLlenarAll.setVisible(true);
             return false;
         } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+            jLabelLlenarAll.setText("Escriba los nuevos datos");
+            jLabelLlenarAll.setVisible(true);
             return true;
+        }
+    }
+
+    private boolean validarNumeros(String text) {
+        if (text.matches("[0-9]*")) {
+            return true;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Datos Incorrectos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        }
+    }
+
+    private boolean validarDatosVacios2(String text, String text0, String text1, String text2, String text3) {
+        if (text.equals("") || text0.equals("") || text1.equals("")
+                || text2.equals("") || text3.equals("")) {
+            jLabelLlenarAll.setText("Rellene todos los datos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validarNumeros2(String text, String text0) {
+        if (text.matches("[0-9]*") && text0.matches("[0-9]*")) {
+            return true;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Datos Incorrectos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
         }
     }
 

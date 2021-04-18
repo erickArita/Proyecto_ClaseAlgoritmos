@@ -256,7 +256,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 
-    public boolean validarDatosVacios(String text, String text0,
+    private boolean validarDatosVacios(String text, String text0,
             String text1, String text2, String text3) {
         if (text.equals("") || text0.equals("") || text1.equals("")
                 || text2.equals("") || text3.equals("")) {

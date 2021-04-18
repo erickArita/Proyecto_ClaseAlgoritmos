@@ -52,8 +52,18 @@ public class Consulta extends javax.swing.JFrame {
         jLabelConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanelPrincipal.add(jLabelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 60));
 
+        jTableDatos.setBackground(new java.awt.Color(204, 204, 204));
+        jTableDatos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
