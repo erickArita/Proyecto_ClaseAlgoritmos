@@ -179,8 +179,8 @@ public class Edicion extends javax.swing.JFrame {
                 objDom.per.setNombre(jTextNombre.getText());
                 objDom.per.setApellido(jTextApellido.getText());
                 
+                     newIcon();
                 btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
-
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         btnEdit_SaveActionPerformedSave(evt);
                     }
@@ -195,7 +195,7 @@ public class Edicion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) {
-        newIcon();
+       
         if (validarDatosVacios2(jTextNombre.getText(), jTextApellido.getText(),
                 jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
             if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
