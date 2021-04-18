@@ -79,15 +79,19 @@ public class GeneradorDOM {
 
     }
 
-    public ArrayList<Persona> getPersons() {
+    public ArrayList<Persona> getPersons() throws IOException, JDOMException {
         initElementsFile();
         List<Element> persona = personas.getChildren();
         ArrayList<Persona> personList = new ArrayList();
 
         for (Element personaAtributes : persona) {
-            Persona personaObject = new Persona();
-            List<Element> atributes = personaAtributes.getChildren();
+
             ArrayList<String> atributesList = new ArrayList();
+            
+            List<Element> atributes = personaAtributes.getChildren();
+
+            Persona personaObject = new Persona();
+            
             atributes.forEach((atribute) -> atributesList.add(atribute.getText()));
 
             personaObject.setNombre(atributesList.get(0));
@@ -96,6 +100,7 @@ public class GeneradorDOM {
             personaObject.setEdad(Integer.parseInt(atributesList.get(3)));
             personaObject.setSexo(atributesList.get(4));
             personaObject.setNacionalidad(atributesList.get(5));
+
             personList.add(personaObject);
         }
         return personList;
