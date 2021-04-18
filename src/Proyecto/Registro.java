@@ -96,7 +96,7 @@ public class Registro extends javax.swing.JFrame {
         jLabelID.setFont(new java.awt.Font("SimSun", 1, 27)); // NOI18N
         jLabelID.setForeground(new java.awt.Color(249, 255, 255));
         jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelID.setText("ID:");
+        jLabelID.setText("DNI:");
         jLabelID.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 500, -1));
 
@@ -187,38 +187,38 @@ public class Registro extends javax.swing.JFrame {
 
         if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
                 jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
-            
-            objDom.per.setNombre(jTextNombre.getText());
-            objDom.per.setApellido(jTextApellido.getText());
-            objDom.per.setNacionalidad(jTextNacionalidad.getText());
-            objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
-            objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
-            objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
-            
-            jTextNombre.setText("");
-            jTextApellido.setText("");
-            jTextNacionalidad.setText("");
-            jTextEdad.setText(null);
-            jTextDni.setText(null);
-            
-            
-            //Va a escribir al documento.
-            try {
-                objDom.initElementsFile();
-            } catch (IOException | JDOMException ex) {
-                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
-            try {
-                objDom.addPerson();
-            } catch (IOException ex) {
-                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } 
-        
+            if (validarNumeros(jTextDni.getText(), jTextEdad.getText())) {
 
+                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
+                objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
+                objDom.per.setNombre(jTextNombre.getText());
+                objDom.per.setApellido(jTextApellido.getText());
+                objDom.per.setNacionalidad(jTextNacionalidad.getText());
+                objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
 
+                jTextNombre.setText("");
+                jTextApellido.setText("");
+                jTextNacionalidad.setText("");
+                jTextEdad.setText(null);
+                jTextDni.setText(null);
+
+                //Va a escribir al documento.
+                try {
+                    objDom.initElementsFile();
+                } catch (IOException | JDOMException ex) {
+                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                try {
+                    objDom.addPerson();
+                } catch (IOException ex) {
+                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }//fin segundo if
+
+        }//fin primer if 
 
 
     }//GEN-LAST:event_btnAddRegistroActionPerformed
@@ -264,10 +264,21 @@ public class Registro extends javax.swing.JFrame {
             return false;
         } else {
             jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
-            jLabelLlenarAll.setVisible(true);
             jLabelLlenarAll.setText("Persona añadida");
+            jLabelLlenarAll.setVisible(true);
             return true;
         }
 
+    }
+
+    private boolean validarNumeros(String text, String text0) {
+        if (text.matches("[0-9]*") && text0.matches("[0-9]*")) {
+            return true;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Datos Incorrectos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        }
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Personas>
+  <persona>
+    <Nombre>sdfg</Nombre>
+    <Apellido>sdfg</Apellido>
+    <Dni>345</Dni>
+    <Edad>345</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>sdfg</Nacionalidad>
+  </persona>
+  <persona>
+    <Nombre>fghd</Nombre>
+    <Apellido>fghd</Apellido>
+    <Dni>342</Dni>
+    <Edad>34</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>dsgs</Nacionalidad>
+  </persona>
+</Personas>
