@@ -16,4 +16,20 @@
     <Sexo>Masculino</Sexo>
     <Nacionalidad>dsgs</Nacionalidad>
   </persona>
+  <persona>
+    <Nombre>Emilzon</Nombre>
+    <Apellido>Emilzon</Apellido>
+    <Dni>234</Dni>
+    <Edad>234</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>sfbs</Nacionalidad>
+  </persona>
+  <persona>
+    <Nombre>sdfgsd</Nombre>
+    <Apellido>sdfgsd</Apellido>
+    <Dni>234</Dni>
+    <Edad>23</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>dfgd</Nacionalidad>
+  </persona>
 </Personas>

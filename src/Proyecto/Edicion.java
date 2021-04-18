@@ -179,7 +179,7 @@ public class Edicion extends javax.swing.JFrame {
                 objDom.per.setNombre(jTextNombre.getText());
                 objDom.per.setApellido(jTextApellido.getText());
                 
-                     newIcon();
+                newIcon();
                 btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         btnEdit_SaveActionPerformedSave(evt);
@@ -238,7 +238,7 @@ public class Edicion extends javax.swing.JFrame {
         jTextNacionalidad.setEnabled(true);
         jComboBoxSexo.setEnabled(true);
         btnEdit_Save.setBackground(new java.awt.Color(37, 35, 49));
-        btnEdit_Save.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnEdit_Save.setFont(new java.awt.Font("Tahoma", 1, 24)); 
         btnEdit_Save.setForeground(new java.awt.Color(249, 255, 255));
         btnEdit_Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona.png"))); // NOI18N
         btnEdit_Save.setText("Editar");
@@ -248,11 +248,6 @@ public class Edicion extends javax.swing.JFrame {
         btnEdit_Save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit_Save.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona2.png"))); // NOI18N
         btnEdit_Save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18));
-        jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
-        jLabelLlenarAll.setText("Ingrese los nuevos datos");
-        jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
     }
 
     private boolean validarDatosVacios(String text, String text0, String text1) {
@@ -274,7 +269,6 @@ public class Edicion extends javax.swing.JFrame {
         } else {
             jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
             jLabelLlenarAll.setText("Datos Incorrectos");
-            jLabelLlenarAll.setVisible(true);
             return false;
         }
     }
@@ -283,7 +277,7 @@ public class Edicion extends javax.swing.JFrame {
         if (text.equals("") || text0.equals("") || text1.equals("")
                 || text2.equals("") || text3.equals("")) {
             jLabelLlenarAll.setText("Rellene todos los datos");
-            jLabelLlenarAll.setVisible(true);
+            //jLabelLlenarAll.setVisible(true);
             return false;
         } else {
             return true;
@@ -296,7 +290,7 @@ public class Edicion extends javax.swing.JFrame {
         } else {
             jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
             jLabelLlenarAll.setText("Datos Incorrectos");
-            jLabelLlenarAll.setVisible(true);
+            //jLabelLlenarAll.setVisible(true);
             return false;
         }
     }
