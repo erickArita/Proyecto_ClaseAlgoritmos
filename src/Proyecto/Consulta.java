@@ -1,19 +1,27 @@
-
 package Proyecto;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
+import javax.swing.table.DefaultTableModel;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.WindowConstants;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jdom2.JDOMException;
 
 public class Consulta extends javax.swing.JFrame {
+
+    GeneradorDOM objDom = new GeneradorDOM();
+    DefaultTableModel model = new DefaultTableModel();
+    Vector v = new Vector();
 
     public Consulta() {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        Shape roundEdges = new RoundRectangle2D.Double(0,0,this.getBounds().width,this.getBounds().height,50,50);
+        Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
     }
 
@@ -24,8 +32,9 @@ public class Consulta extends javax.swing.JFrame {
         jPanelPrincipal = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
         jLabelConsulta = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDatos = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,30 +61,24 @@ public class Consulta extends javax.swing.JFrame {
         jLabelConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanelPrincipal.add(jLabelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 60));
 
-        jTableDatos.setBackground(new java.awt.Color(204, 204, 204));
-        jTableDatos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Apellido", "Edad", "DNI", "Nacionalidad", "Sexo"
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTableDatos);
+        });
+        jPanelPrincipal.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, -1, -1));
 
-        jPanelPrincipal.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 930, -1));
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");
+        model.addColumn("DNI");
+        model.addColumn("Edad");
+        model.addColumn("Sexo");
+        model.addColumn("Nacionalidad");
+        tabla.setModel(model);
+        jScrollPane2.setViewportView(tabla);
+
+        jPanelPrincipal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 940, -1));
 
         getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
@@ -86,13 +89,34 @@ public class Consulta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            ArrayList<Persona> personas = objDom.getPersons();
+            for (Persona p : personas) {
+                
+            }
+        } catch (IOException | JDOMException ex) {
+            Logger.getLogger(Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+  
+        
+        
+        
+            model.addRow(v);
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelConsulta;
     private javax.swing.JPanel jPanelPrincipal;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableDatos;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
+
+
 }

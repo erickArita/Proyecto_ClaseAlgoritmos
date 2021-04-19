@@ -39,6 +39,7 @@ public class GeneradorDOM {
         }
 
     }
+//Metodo para agregar persona desde Registro.
 
     public void addPerson() throws IOException {
 
@@ -87,11 +88,11 @@ public class GeneradorDOM {
         for (Element personaAtributes : persona) {
 
             ArrayList<String> atributesList = new ArrayList();
-            
+
             List<Element> atributes = personaAtributes.getChildren();
 
             Persona personaObject = new Persona();
-            
+
             atributes.forEach((atribute) -> atributesList.add(atribute.getText()));
 
             personaObject.setNombre(atributesList.get(0));
@@ -102,7 +103,7 @@ public class GeneradorDOM {
             personaObject.setNacionalidad(atributesList.get(5));
 
             personList.add(personaObject);
-        }
-        return personList;
     }
+        return personList;
+}
 }

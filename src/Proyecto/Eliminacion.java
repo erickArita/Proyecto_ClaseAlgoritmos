@@ -1,10 +1,8 @@
-
 package Proyecto;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.WindowConstants;
 
 public class Eliminacion extends javax.swing.JFrame {
 
@@ -12,7 +10,6 @@ public class Eliminacion extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
     }
@@ -196,11 +193,11 @@ public class Eliminacion extends javax.swing.JFrame {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
-    
-    private void btnFind_DeleteActionPerformedDel(java.awt.event.ActionEvent ev){
+
+    private void btnFind_DeleteActionPerformedDel(java.awt.event.ActionEvent ev) {
         this.dispose();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnFind_Delete;

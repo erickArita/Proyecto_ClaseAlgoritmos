@@ -5,15 +5,18 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.WindowConstants;
 
 public class Menu extends javax.swing.JFrame {
 
     int x, y;
+    Menu m;
 
     public Menu() {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
     }
@@ -170,6 +173,7 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();

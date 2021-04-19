@@ -9,5 +9,4 @@ public class App {
         new Menu().setVisible(true);
     }
 
-
 }

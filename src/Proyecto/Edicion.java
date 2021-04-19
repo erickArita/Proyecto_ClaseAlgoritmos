@@ -3,18 +3,15 @@ package Proyecto;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.WindowConstants;
 
 public class Edicion extends javax.swing.JFrame {
 
     GeneradorDOM objDom = new GeneradorDOM();
-    Registro reg = new Registro();
 
     public Edicion() {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
 
@@ -25,6 +22,7 @@ public class Edicion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btnCerrar = new javax.swing.JButton();
         jLabelEditPerson = new javax.swing.JLabel();
         jLabelNacionalidad = new javax.swing.JLabel();
         jLabelApellido = new javax.swing.JLabel();
@@ -40,13 +38,24 @@ public class Edicion extends javax.swing.JFrame {
         jTextEdad = new javax.swing.JTextField();
         jTextDni = new javax.swing.JTextField();
         jLabelLlenarAll = new javax.swing.JLabel();
-        btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(37, 35, 49));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnCerrar.png"))); // NOI18N
+        btnCerrar.setBorderPainted(false);
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setFocusPainted(false);
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnCerrar2.png"))); // NOI18N
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, -1, -1));
 
         jLabelEditPerson.setFont(new java.awt.Font("Bahnschrift", 1, 36)); // NOI18N
         jLabelEditPerson.setForeground(new java.awt.Color(249, 255, 255));
@@ -154,18 +163,6 @@ public class Edicion extends javax.swing.JFrame {
         jLabelLlenarAll.setVisible(false);
         jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 350, 30));
 
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnCerrar.png"))); // NOI18N
-        btnCerrar.setBorderPainted(false);
-        btnCerrar.setContentAreaFilled(false);
-        btnCerrar.setFocusPainted(false);
-        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnCerrar2.png"))); // NOI18N
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, -1, -1));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
         pack();
@@ -178,27 +175,25 @@ public class Edicion extends javax.swing.JFrame {
                 objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
                 objDom.per.setNombre(jTextNombre.getText());
                 objDom.per.setApellido(jTextApellido.getText());
-                
+
                 newIcon();
                 btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         btnEdit_SaveActionPerformedSave(evt);
                     }
                 });
-            }
+                }       
         }
-
     }//GEN-LAST:event_btnEdit_SaveActionPerformed
-
+     
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) {
-       
-        if (validarDatosVacios2(jTextNombre.getText(), jTextApellido.getText(),
-                jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
-            if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
+
+        if (validarDatosVacios2(jTextNacionalidad.getText(), jTextEdad.getText())) {
+            if (validarNumeros2(jTextEdad.getText())) {
 
                 objDom.per.setNombre(jTextNombre.getText());
                 objDom.per.setApellido(jTextApellido.getText());
@@ -206,9 +201,7 @@ public class Edicion extends javax.swing.JFrame {
                 objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
                 objDom.per.setNacionalidad(jTextNacionalidad.getText());
                 objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
-
                 this.dispose();
-                
             }//Fin segundo if
         }//Fin primer if
     }
@@ -237,14 +230,8 @@ public class Edicion extends javax.swing.JFrame {
         jTextEdad.setEnabled(true);
         jTextNacionalidad.setEnabled(true);
         jComboBoxSexo.setEnabled(true);
-        btnEdit_Save.setBackground(new java.awt.Color(37, 35, 49));
-        btnEdit_Save.setFont(new java.awt.Font("Tahoma", 1, 24)); 
-        btnEdit_Save.setForeground(new java.awt.Color(249, 255, 255));
         btnEdit_Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona.png"))); // NOI18N
         btnEdit_Save.setText("Editar");
-        btnEdit_Save.setBorderPainted(false);
-        btnEdit_Save.setContentAreaFilled(false);
-        btnEdit_Save.setFocusPainted(false);
         btnEdit_Save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit_Save.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona2.png"))); // NOI18N
         btnEdit_Save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -273,24 +260,23 @@ public class Edicion extends javax.swing.JFrame {
         }
     }
 
-    private boolean validarDatosVacios2(String text, String text0, String text1, String text2, String text3) {
-        if (text.equals("") || text0.equals("") || text1.equals("")
-                || text2.equals("") || text3.equals("")) {
+    private boolean validarDatosVacios2(String text, String text0) {
+        if (text.equals("") || text0.equals("")) {
             jLabelLlenarAll.setText("Rellene todos los datos");
-            //jLabelLlenarAll.setVisible(true);
+            jLabelLlenarAll.setVisible(true);
             return false;
         } else {
             return true;
         }
     }
 
-    private boolean validarNumeros2(String text, String text0) {
-        if (text.matches("[0-9]*") && text0.matches("[0-9]*")) {
+    private boolean validarNumeros2(String text) {
+        if (text.matches("[0-9]*")) {
             return true;
         } else {
             jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
             jLabelLlenarAll.setText("Datos Incorrectos");
-            //jLabelLlenarAll.setVisible(true);
+            jLabelLlenarAll.setVisible(true);
             return false;
         }
     }

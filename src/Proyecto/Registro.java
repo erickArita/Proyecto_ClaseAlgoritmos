@@ -6,8 +6,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Action;
-import javax.swing.WindowConstants;
 import org.jdom2.JDOMException;
 
 public class Registro extends javax.swing.JFrame {
@@ -19,7 +17,6 @@ public class Registro extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
     }

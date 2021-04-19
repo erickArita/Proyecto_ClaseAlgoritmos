@@ -1,13 +1,14 @@
-
 package Proyecto;
 
 public class Persona {
-     private String nombre;   
-     private String apellido;
-     private String nacionalidad;
-     private String sexo;
-     private int dni;
-     private int edad;
+
+    private String nombre;
+    private String apellido;
+    private String nacionalidad;
+    private String sexo;
+    private int dni;
+    private int edad;
+    
 
     public String getNombre() {
         return nombre;
@@ -56,5 +57,5 @@ public class Persona {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-     
-}
+    
+    }

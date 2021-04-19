@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Personas>
-  <persona>
-    <Nombre>sdfg</Nombre>
-    <Apellido>sdfg</Apellido>
-    <Dni>345</Dni>
-    <Edad>345</Edad>
-    <Sexo>Masculino</Sexo>
-    <Nacionalidad>sdfg</Nacionalidad>
-  </persona>
-  <persona>
-    <Nombre>fghd</Nombre>
-    <Apellido>fghd</Apellido>
-    <Dni>342</Dni>
-    <Edad>34</Edad>
-    <Sexo>Masculino</Sexo>
-    <Nacionalidad>dsgs</Nacionalidad>
-  </persona>
-  <persona>
-    <Nombre>Emilzon</Nombre>
-    <Apellido>Emilzon</Apellido>
-    <Dni>234</Dni>
-    <Edad>234</Edad>
-    <Sexo>Masculino</Sexo>
-    <Nacionalidad>sfbs</Nacionalidad>
-  </persona>
-  <persona>
-    <Nombre>sdfgsd</Nombre>
-    <Apellido>sdfgsd</Apellido>
-    <Dni>234</Dni>
-    <Edad>23</Edad>
-    <Sexo>Masculino</Sexo>
-    <Nacionalidad>dfgd</Nacionalidad>
-  </persona>
+    <persona>
+        <Nombre>Emilzon</Nombre>
+        <Apellido>Jeronimo</Apellido>
+        <Dni>0421</Dni>
+        <Edad>20</Edad>
+        <Sexo>Masculino</Sexo>
+        <Nacionalidad>Honduras</Nacionalidad>
+    </persona>
+    <persona>
+        <Nombre>Andre</Nombre>
+        <Apellido>Flores</Apellido>
+        <Dni>0402</Dni>
+        <Edad>21</Edad>
+        <Sexo>Masculino</Sexo>
+        <Nacionalidad>Costa Rica</Nacionalidad>
+    </persona>
 </Personas>
+
