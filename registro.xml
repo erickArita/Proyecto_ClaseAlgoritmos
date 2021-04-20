@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Personas>
-    <persona>
-        <Nombre>Emilzon</Nombre>
-        <Apellido>Jeronimo</Apellido>
-        <Dni>0421</Dni>
-        <Edad>20</Edad>
-        <Sexo>Masculino</Sexo>
-        <Nacionalidad>Honduras</Nacionalidad>
-    </persona>
-    <persona>
-        <Nombre>Andre</Nombre>
-        <Apellido>Flores</Apellido>
-        <Dni>0402</Dni>
-        <Edad>21</Edad>
-        <Sexo>Masculino</Sexo>
-        <Nacionalidad>Costa Rica</Nacionalidad>
-    </persona>
+  <persona>
+    <Nombre>Emilzon</Nombre>
+    <Apellido>Jeronimo</Apellido>
+    <Dni>1234</Dni>
+    <Edad>20</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>Honduras</Nacionalidad>
+  </persona>
 </Personas>
-

@@ -12,7 +12,6 @@ public class Registro extends javax.swing.JFrame {
 
     //Objeto GeneradorDOM
     GeneradorDOM objDom = new GeneradorDOM();
-
     public Registro() {
         this.setUndecorated(true);
         initComponents();
@@ -162,7 +161,7 @@ public class Registro extends javax.swing.JFrame {
         jTextEdad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(jTextEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 350, -1));
 
-        jTextDni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextDni.setFont(new java.awt.Font("Segoe UI", 1, 14));
         jTextDni.setForeground(new java.awt.Color(0, 0, 28));
         jTextDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(jTextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
@@ -181,39 +180,62 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRegistroActionPerformed
-
-        if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
+   if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
                 jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
-
             if (validarNumeros(jTextDni.getText(), jTextEdad.getText())) {
 
-                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
-                objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
-                objDom.per.setNombre(jTextNombre.getText());
-                objDom.per.setApellido(jTextApellido.getText());
-                objDom.per.setNacionalidad(jTextNacionalidad.getText());
-                objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
-
-                jTextNombre.setText("");
-                jTextApellido.setText("");
-                jTextNacionalidad.setText("");
-                jTextEdad.setText(null);
-                jTextDni.setText(null);
-
-                //Va a escribir al documento.
                 try {
-                    objDom.initElementsFile();
+                    //Si no se ha ingresado alguna persona, no valida si existe.
+                    if (null == objDom.per.getDni()) {
+                        objDom.per.setDni(jTextDni.getText());
+                        objDom.per.setEdad(jTextEdad.getText());
+                        objDom.per.setNombre(jTextNombre.getText());
+                        objDom.per.setApellido(jTextApellido.getText());
+                        objDom.per.setNacionalidad(jTextNacionalidad.getText());
+                        objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
+                        jTextNombre.setText("");
+                        jTextApellido.setText("");
+                        jTextNacionalidad.setText("");
+                        jTextEdad.setText("");
+                        jTextDni.setText("");
+                        objDom.initElementsFile();
+                        objDom.addPerson();
+                        
+                    } else {
+                        objDom.per.setDni(jTextDni.getText());
+                        objDom.per.setEdad(jTextEdad.getText());
+                        objDom.per.setNombre(jTextNombre.getText());
+                        objDom.per.setApellido(jTextApellido.getText());
+                        objDom.per.setNacionalidad(jTextNacionalidad.getText());
+                        objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
+                        objDom.per.setAuxDni(objDom.per.getDni());
+                        if (validarPersonaExistente()) {
+
+                            jTextNombre.setText("");
+                            jTextApellido.setText("");
+                            jTextNacionalidad.setText("");
+                            jTextEdad.setText("");
+                            jTextDni.setText("");
+
+                            //Va a escribir al documento.
+                            try {
+                                objDom.initElementsFile();
+                            } catch (IOException | JDOMException ex) {
+                                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                            try {
+                                objDom.addPerson();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
                 } catch (IOException | JDOMException ex) {
                     Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                try {
-                    objDom.addPerson();
-                } catch (IOException ex) {
-                    Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }//fin segundo if
+            }
 
         }//fin primer if 
 
@@ -247,7 +269,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSexo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextApellido;
-    private javax.swing.JTextField jTextDni;
+    public javax.swing.JTextField jTextDni;
     private javax.swing.JTextField jTextEdad;
     private javax.swing.JTextField jTextNacionalidad;
     private javax.swing.JTextField jTextNombre;
@@ -277,5 +299,18 @@ public class Registro extends javax.swing.JFrame {
             jLabelLlenarAll.setVisible(true);
             return false;
         }
+    }
+
+    private boolean validarPersonaExistente() throws IOException, JDOMException {
+        objDom.getPersons();
+        if (objDom.getFind()) {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Esta persona ya existe");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }

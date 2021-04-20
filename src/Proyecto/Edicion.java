@@ -3,9 +3,14 @@ package Proyecto;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jdom2.JDOMException;
 
 public class Edicion extends javax.swing.JFrame {
 
+    Registro regi = new Registro();
     GeneradorDOM objDom = new GeneradorDOM();
 
     public Edicion() {
@@ -130,18 +135,20 @@ public class Edicion extends javax.swing.JFrame {
         jTextNacionalidad.setEnabled(false);
         jPanel1.add(jTextNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 350, -1));
 
-        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", "Otro" }));
+        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", " " }));
         jComboBoxSexo.setEnabled(false);
         jPanel1.add(jComboBoxSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 440, 350, -1));
 
         jTextNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextNombre.setForeground(new java.awt.Color(0, 0, 28));
         jTextNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextNombre.setEnabled(false);
         jPanel1.add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 350, -1));
 
         jTextApellido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextApellido.setForeground(new java.awt.Color(0, 0, 28));
         jTextApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextApellido.setEnabled(false);
         jPanel1.add(jTextApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 350, -1));
 
         jTextEdad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -169,36 +176,72 @@ public class Edicion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEdit_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_SaveActionPerformed
-        if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
-                jTextDni.getText())) {
+        if (validarDatosVacios(jTextDni.getText())) {
             if (validarNumeros(jTextDni.getText())) {
-                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
-                objDom.per.setNombre(jTextNombre.getText());
-                objDom.per.setApellido(jTextApellido.getText());
+                objDom.per.setDni(jTextDni.getText());
+                try {
+                    if (null == objDom.per.getDni()) {
+                        jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+                        jLabelLlenarAll.setText("No existe base de datos");
+                        jLabelLlenarAll.setVisible(true);
+                    } else {
+                        if (!validarPersonaExistente()) {
+                            int selected = 0;
+                            /*if (objDom.per.getSexo().equals("Masculino")) {
+                            selected = 1;
+                        } else if (objDom.per.getSexo().equals("Femenino")) {
+                            selected = 2;
+                        }*/
+                            jTextNombre.setText(objDom.per.getNombre());
+                            jTextNombre.setEnabled(true);
+                            jTextApellido.setText(objDom.per.getApellido());
+                            jTextApellido.setEnabled(true);
+                            jTextEdad.setText(objDom.per.getEdad());
+                            jTextEdad.setEnabled(true);
+                            jTextNacionalidad.setText(objDom.per.getNacionalidad());
+                            jTextNacionalidad.setEnabled(true);
+                            jComboBoxSexo.setSelectedIndex(selected);
+                            jComboBoxSexo.setEnabled(true);
+                            btnEdit_Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona.png"))); // NOI18N
+                            btnEdit_Save.setText("Guardar");
+                            btnEdit_Save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+                            btnEdit_Save.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona2.png"))); // NOI18N
+                            btnEdit_Save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-                newIcon();
-                btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        btnEdit_SaveActionPerformedSave(evt);
+                            btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
+                                @Override
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                    try {
+                                        btnEdit_SaveActionPerformedSave(evt);
+                                    } catch (IOException | JDOMException ex) {
+                                        Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            });
+                        }
                     }
-                });
-                }       
+                } catch (IOException | JDOMException ex) {
+                    Logger.getLogger(Edicion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
         }
     }//GEN-LAST:event_btnEdit_SaveActionPerformed
-     
+
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) {
+    private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) throws IOException, JDOMException {
 
-        if (validarDatosVacios2(jTextNacionalidad.getText(), jTextEdad.getText())) {
-            if (validarNumeros2(jTextEdad.getText())) {
+        if (validarDatosVacios2(jTextNombre.getText(), jTextApellido.getText(),
+                jTextDni.getText(), jTextEdad.getText(), jTextNacionalidad.getText())) {
+            if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
 
                 objDom.per.setNombre(jTextNombre.getText());
                 objDom.per.setApellido(jTextApellido.getText());
-                objDom.per.setDni(Integer.parseInt(jTextDni.getText()));
-                objDom.per.setEdad(Integer.parseInt(jTextEdad.getText()));
+                objDom.per.setDni(jTextDni.getText());
+                objDom.per.setEdad(jTextEdad.getText());
                 objDom.per.setNacionalidad(jTextNacionalidad.getText());
                 objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
                 this.dispose();
@@ -226,19 +269,8 @@ public class Edicion extends javax.swing.JFrame {
     private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 
-    private void newIcon() {
-        jTextEdad.setEnabled(true);
-        jTextNacionalidad.setEnabled(true);
-        jComboBoxSexo.setEnabled(true);
-        btnEdit_Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona.png"))); // NOI18N
-        btnEdit_Save.setText("Editar");
-        btnEdit_Save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEdit_Save.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona2.png"))); // NOI18N
-        btnEdit_Save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    }
-
-    private boolean validarDatosVacios(String text, String text0, String text1) {
-        if (text.equals("") || text0.equals("") || text1.equals("")) {
+    private boolean validarDatosVacios(String text) {
+        if (text.equals("")) {
             jLabelLlenarAll.setText("Rellene todos los datos");
             jLabelLlenarAll.setVisible(true);
             return false;
@@ -260,8 +292,9 @@ public class Edicion extends javax.swing.JFrame {
         }
     }
 
-    private boolean validarDatosVacios2(String text, String text0) {
-        if (text.equals("") || text0.equals("")) {
+    private boolean validarDatosVacios2(String text, String text0, String text1, String text2, String text3) {
+        if (text.equals("") || text0.equals("") || text1.equals("")
+                || text2.equals("") || text3.equals("")) {
             jLabelLlenarAll.setText("Rellene todos los datos");
             jLabelLlenarAll.setVisible(true);
             return false;
@@ -270,8 +303,8 @@ public class Edicion extends javax.swing.JFrame {
         }
     }
 
-    private boolean validarNumeros2(String text) {
-        if (text.matches("[0-9]*")) {
+    private boolean validarNumeros2(String text, String text1) {
+        if (text.matches("[0-9]*") || text1.matches("[0-9]*")) {
             return true;
         } else {
             jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
@@ -279,6 +312,22 @@ public class Edicion extends javax.swing.JFrame {
             jLabelLlenarAll.setVisible(true);
             return false;
         }
+    }
+
+    private boolean validarPersonaExistente() throws IOException, JDOMException {
+        objDom.getPersons();
+        if (objDom.getFind()) {
+            jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+            jLabelLlenarAll.setText("Coloque los nuevos datos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Persona no encontrada");
+            jLabelLlenarAll.setVisible(true);
+            return true;
+        }
+
     }
 
 }

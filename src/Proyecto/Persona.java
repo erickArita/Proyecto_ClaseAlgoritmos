@@ -6,8 +6,17 @@ public class Persona {
     private String apellido;
     private String nacionalidad;
     private String sexo;
-    private int dni;
-    private int edad;
+    private String dni;
+    private String edad;
+    private String auxDni;
+
+    public String getAuxDni() {
+        return auxDni;
+    }
+
+    public void setAuxDni(String auxDni) {
+        this.auxDni = auxDni;
+    }
     
 
     public String getNombre() {
@@ -42,19 +51,19 @@ public class Persona {
         this.sexo = sexo;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
-    public int getEdad() {
+    public String getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
     
