@@ -32,7 +32,6 @@ public class Consulta extends javax.swing.JFrame {
         jPanelPrincipal = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
         jLabelConsulta = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
 
@@ -61,14 +60,6 @@ public class Consulta extends javax.swing.JFrame {
         jLabelConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanelPrincipal.add(jLabelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 60));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanelPrincipal.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, -1, -1));
-
         model.addColumn("Nombre");
         model.addColumn("Apellido");
         model.addColumn("DNI");
@@ -89,29 +80,9 @@ public class Consulta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            ArrayList<Persona> personas = objDom.getPersons();
-            for (Persona p : personas) {
-                
-            }
-        } catch (IOException | JDOMException ex) {
-            Logger.getLogger(Consulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-  
-        
-        
-        
-            model.addRow(v);
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelConsulta;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JScrollPane jScrollPane2;
