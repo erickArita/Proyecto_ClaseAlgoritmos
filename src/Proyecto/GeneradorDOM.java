@@ -31,7 +31,6 @@ public class GeneradorDOM {
         this.find = find;
     }
 
-
     public void initElementsFile() throws IOException, JDOMException {
 
         File xmlFile = new File("registro.xml");
@@ -103,12 +102,12 @@ public class GeneradorDOM {
 
             personaObject.setNombre(atributesList.get(0));
             personaObject.setApellido(atributesList.get(1));
-            
+
             personaObject.setDni(atributesList.get(2));
-            if ((per.getDni()).equals(atributesList.get(2)) ) {
-                setFind(true);
-            }
-            
+//            if ((per.getDni()).equals(atributesList.get(2))) {
+//                setFind(true);
+//            }
+
             personaObject.setEdad(atributesList.get(3));
             personaObject.setSexo(atributesList.get(4));
             personaObject.setNacionalidad(atributesList.get(5));
@@ -125,6 +124,6 @@ public class GeneradorDOM {
         per.setEdad(personaObject.getEdad());
         per.setNacionalidad(personaObject.getNacionalidad());
         per.setSexo(personaObject.getSexo());
-        
+
     }
 }

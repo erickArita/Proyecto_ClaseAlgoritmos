@@ -8,4 +8,44 @@
     <Sexo>Masculino</Sexo>
     <Nacionalidad>Honduras</Nacionalidad>
   </persona>
+  <persona>
+    <Nombre>erick</Nombre>
+    <Apellido>Arita</Apellido>
+    <Dni>12345</Dni>
+    <Edad>19</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>hon</Nacionalidad>
+  </persona>
+  <persona>
+    <Nombre>erick</Nombre>
+    <Apellido>Arita</Apellido>
+    <Dni>12345678</Dni>
+    <Edad>19</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>hon</Nacionalidad>
+  </persona>
+  <persona>
+    <Nombre>Axel</Nombre>
+    <Apellido>Jeronimpo</Apellido>
+    <Dni>12399</Dni>
+    <Edad>19</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>m</Nacionalidad>
+  </persona>
+  <persona>
+    <Nombre>kkjh</Nombre>
+    <Apellido>ujg</Apellido>
+    <Dni>98797</Dni>
+    <Edad>1</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>gjhg</Nacionalidad>
+  </persona>
+  <persona>
+    <Nombre>kkjh</Nombre>
+    <Apellido>ujg</Apellido>
+    <Dni>876</Dni>
+    <Edad>1</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>gjhg</Nacionalidad>
+  </persona>
 </Personas>
