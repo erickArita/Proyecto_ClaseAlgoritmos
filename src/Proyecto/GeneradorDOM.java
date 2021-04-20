@@ -125,6 +125,6 @@ public class GeneradorDOM {
         per.setEdad(personaObject.getEdad());
         per.setNacionalidad(personaObject.getNacionalidad());
         per.setSexo(personaObject.getSexo());
-        
+        //hola
     }
 }
