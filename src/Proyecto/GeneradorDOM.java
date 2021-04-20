@@ -17,25 +17,31 @@ import org.jdom2.output.XMLOutputter;
 public class GeneradorDOM {
 
     private XMLOutputter xml;
-    private Element personas = null;
+    private Element personas = new Element("Personas");
     private Document doc = null;
+    private Boolean find = false;
     //Objeto Clase Persona    
     public Persona per = new Persona();
+
+    public Boolean getFind() {
+        return find;
+    }
+
+    public void setFind(Boolean find) {
+        this.find = find;
+    }
+
 
     public void initElementsFile() throws IOException, JDOMException {
 
         File xmlFile = new File("registro.xml");
 
         if (xmlFile.exists()) {
-            FileInputStream fis = new FileInputStream(xmlFile);
-            SAXBuilder sb = new SAXBuilder();
-            doc = sb.build(fis);
+            SAXBuilder builder = new SAXBuilder();
+            doc = builder.build(new FileInputStream(xmlFile));
             personas = doc.detachRootElement();
-
         } else {
             doc = new Document();
-            personas = new Element("Personas");
-
         }
 
     }
@@ -47,19 +53,19 @@ public class GeneradorDOM {
         nombre.setText(per.getNombre());
 
         Element apellido = new Element("Apellido");
-        apellido.setText(per.getNombre());
+        apellido.setText(per.getApellido());
 
         Element sexo = new Element("Sexo");
         sexo.setText(per.getSexo());
 
         Element edad = new Element("Edad");
-        edad.setText(Integer.toString(per.getEdad()));
+        edad.setText(per.getEdad());
 
         Element nacionalidad = new Element("Nacionalidad");
         nacionalidad.setText(per.getNacionalidad());
 
         Element dni = new Element("Dni");
-        dni.setText(Integer.toString(per.getDni()));
+        dni.setText(per.getDni());
 
         Element persona = new Element("persona");
 
@@ -97,13 +103,28 @@ public class GeneradorDOM {
 
             personaObject.setNombre(atributesList.get(0));
             personaObject.setApellido(atributesList.get(1));
-            personaObject.setDni(Integer.parseInt(atributesList.get(2)));
-            personaObject.setEdad(Integer.parseInt(atributesList.get(3)));
+            
+            personaObject.setDni(atributesList.get(2));
+            if ((per.getDni()).equals(atributesList.get(2)) ) {
+                setFind(true);
+            }
+            
+            personaObject.setEdad(atributesList.get(3));
             personaObject.setSexo(atributesList.get(4));
             personaObject.setNacionalidad(atributesList.get(5));
 
             personList.add(personaObject);
-    }
+            setPersonaObjectToPer(personaObject);
+        }
         return personList;
-}
+    }
+
+    private void setPersonaObjectToPer(Persona personaObject) {
+        per.setNombre(personaObject.getNombre());
+        per.setApellido(personaObject.getApellido());
+        per.setEdad(personaObject.getEdad());
+        per.setNacionalidad(personaObject.getNacionalidad());
+        per.setSexo(personaObject.getSexo());
+        
+    }
 }
