@@ -103,7 +103,6 @@ public class GeneradorDOM {
 
             personaObject.setNombre(atributesList.get(0));
             personaObject.setApellido(atributesList.get(1));
-            
             personaObject.setDni(atributesList.get(2));
             if ((per.getDni()).equals(atributesList.get(2)) ) {
                 setFind(true);

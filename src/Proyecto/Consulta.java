@@ -15,7 +15,7 @@ public class Consulta extends javax.swing.JFrame {
 
     GeneradorDOM objDom = new GeneradorDOM();
     DefaultTableModel model = new DefaultTableModel();
-    Vector v = new Vector();
+   
 
     public Consulta() {
         this.setUndecorated(true);
