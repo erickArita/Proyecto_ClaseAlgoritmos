@@ -5,7 +5,12 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.WindowConstants;
+import org.jdom2.JDOMException;
 
 public class Menu extends javax.swing.JFrame {
 
@@ -203,8 +208,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         new Consulta().setVisible(true);
-        // 
+       
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         new Eliminacion().setVisible(true);

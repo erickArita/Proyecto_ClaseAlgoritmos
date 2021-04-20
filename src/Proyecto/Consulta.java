@@ -13,16 +13,31 @@ import org.jdom2.JDOMException;
 
 public class Consulta extends javax.swing.JFrame {
 
-    GeneradorDOM objDom = new GeneradorDOM();
+    ArrayList<Persona> listaDePersonas;
     DefaultTableModel model = new DefaultTableModel();
-    Vector v = new Vector();
 
-    public Consulta() {
+    public Consulta() throws IOException, JDOMException {
+        this.listaDePersonas = new GeneradorDOM().getPersons();
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
+        llenarTabla();
+    }
+
+    private void llenarTabla() {
+
+        listaDePersonas.forEach((person) -> 
+            model.addRow(new Object[]{
+                person.getNombre(),
+                person.getApellido(),
+                person.getDni(),
+                person.getEdad(),
+                person.getSexo(),
+                person.getNacionalidad()}
+            )
+        );
     }
 
     @SuppressWarnings("unchecked")
@@ -88,6 +103,5 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
-
 
 }
