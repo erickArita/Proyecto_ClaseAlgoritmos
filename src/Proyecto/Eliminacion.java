@@ -23,7 +23,7 @@ public class Eliminacion extends javax.swing.JFrame {
         jLabelNacionalidad = new javax.swing.JLabel();
         jLabelApellido = new javax.swing.JLabel();
         jLabelEdad = new javax.swing.JLabel();
-        jLabelID = new javax.swing.JLabel();
+        jLabelDni = new javax.swing.JLabel();
         jLabelSexo = new javax.swing.JLabel();
         jLabelNombre = new javax.swing.JLabel();
         btnFind_Delete = new javax.swing.JButton();
@@ -32,8 +32,8 @@ public class Eliminacion extends javax.swing.JFrame {
         jTextNombre = new javax.swing.JTextField();
         jTextApellido = new javax.swing.JTextField();
         jTextEdad = new javax.swing.JTextField();
-        jTextID = new javax.swing.JTextField();
-        jLabelMessage = new javax.swing.JLabel();
+        jTextDni = new javax.swing.JTextField();
+        jLabelLlenarAll = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,12 +70,12 @@ public class Eliminacion extends javax.swing.JFrame {
         jLabelEdad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 500, -1));
 
-        jLabelID.setFont(new java.awt.Font("SimSun", 1, 27)); // NOI18N
-        jLabelID.setForeground(new java.awt.Color(249, 255, 255));
-        jLabelID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelID.setText("ID:");
-        jLabelID.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelID, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 500, -1));
+        jLabelDni.setFont(new java.awt.Font("SimSun", 1, 27)); // NOI18N
+        jLabelDni.setForeground(new java.awt.Color(249, 255, 255));
+        jLabelDni.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelDni.setText("DNI:");
+        jLabelDni.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabelDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 500, -1));
 
         jLabelSexo.setFont(new java.awt.Font("SimSun", 1, 27)); // NOI18N
         jLabelSexo.setForeground(new java.awt.Color(249, 255, 255));
@@ -121,12 +121,14 @@ public class Eliminacion extends javax.swing.JFrame {
 
         jTextNombre.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextNombre.setForeground(new java.awt.Color(0, 0, 28));
+        jTextNombre.setEnabled(false);
         jTextNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(jTextNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 350, -1));
 
         jTextApellido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextApellido.setForeground(new java.awt.Color(0, 0, 28));
         jTextApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextApellido.setEnabled(false);
         jPanel1.add(jTextApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 350, -1));
 
         jTextEdad.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -135,16 +137,16 @@ public class Eliminacion extends javax.swing.JFrame {
         jTextEdad.setEnabled(false);
         jPanel1.add(jTextEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 350, -1));
 
-        jTextID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jTextID.setForeground(new java.awt.Color(0, 0, 28));
-        jTextID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(jTextID, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
+        jTextDni.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jTextDni.setForeground(new java.awt.Color(0, 0, 28));
+        jTextDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(jTextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
 
-        jLabelMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelMessage.setForeground(new java.awt.Color(255, 45, 0));
-        jLabelMessage.setText("Rellene los datos de la persona a eliminar");
-        jLabelMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 360, 30));
+        jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+        jLabelLlenarAll.setText("Rellene los datos de la persona a eliminar");
+        jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 360, 30));
 
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnCerrar.png"))); // NOI18N
         btnCerrar.setBorderPainted(false);
@@ -164,22 +166,22 @@ public class Eliminacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFind_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind_DeleteActionPerformed
-        jTextEdad.setEnabled(true);
-        jTextNacionalidad.setEnabled(true);
-        jComboBoxSexo.setEnabled(true);
-        btnFind_Delete.setBackground(new java.awt.Color(37, 35, 49));
-        btnFind_Delete.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnFind_Delete.setForeground(new java.awt.Color(249, 255, 255));
-        btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona.png"))); // NOI18N
-        btnFind_Delete.setText("Eliminar");
-        jLabelMessage.setText("Presione eliminar");
-        jLabelMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabelMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
-        btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFind_DeleteActionPerformedDel(evt);
-            }
-        });
+        if (validarDatosVacios(jTextDni.getText())) {
+            jTextEdad.setEnabled(true);
+            jTextNacionalidad.setEnabled(true);
+            jComboBoxSexo.setEnabled(true);
+
+            btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona.png"))); // NOI18N
+            btnFind_Delete.setText("Eliminar");
+            jLabelLlenarAll.setText("Presione eliminar");
+            jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
+            btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnFind_DeleteActionPerformedDel(evt);
+                }
+            });
+        }
     }//GEN-LAST:event_btnFind_DeleteActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -195,18 +197,31 @@ public class Eliminacion extends javax.swing.JFrame {
     private javax.swing.JButton btnFind_Delete;
     private javax.swing.JComboBox<String> jComboBoxSexo;
     private javax.swing.JLabel jLabelApellido;
+    private javax.swing.JLabel jLabelDni;
     private javax.swing.JLabel jLabelEdad;
     private javax.swing.JLabel jLabelEditPerson;
-    private javax.swing.JLabel jLabelID;
-    private javax.swing.JLabel jLabelMessage;
+    private javax.swing.JLabel jLabelLlenarAll;
     private javax.swing.JLabel jLabelNacionalidad;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelSexo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextDni;
     private javax.swing.JTextField jTextEdad;
-    private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNacionalidad;
     private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validarDatosVacios(String text) {
+        if (text.equals("")) {
+            jLabelLlenarAll.setText("Rellene todos los datos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+            jLabelLlenarAll.setText("Escriba los nuevos datos");
+            jLabelLlenarAll.setVisible(true);
+            return true;
+        }
+    }
 }
