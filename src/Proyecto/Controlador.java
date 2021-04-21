@@ -48,10 +48,7 @@ public class Controlador {
 //Metodo para agregar persona desde Registro.
 
     public void addPerson() throws IOException {
-        System.out.println(per.getNombre());
-        System.out.println(per.getApellido());
-        System.out.println(per.getNacionalidad());
-
+        
         Element nombre = new Element("Nombre");
         nombre.setText(per.getNombre());
 

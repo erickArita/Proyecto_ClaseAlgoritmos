@@ -11,7 +11,7 @@ import org.jdom2.JDOMException;
 public class Edicion extends javax.swing.JFrame {
 
     Registro regi = new Registro();
-    Controlador objDom = new Controlador();
+    Controlador controlador = new Controlador();
 
     public Edicion() {
         this.setUndecorated(true);
@@ -178,27 +178,27 @@ public class Edicion extends javax.swing.JFrame {
     private void btnEdit_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_SaveActionPerformed
         if (validarDatosVacios(jTextDni.getText())) {
             if (validarNumeros(jTextDni.getText())) {
-                objDom.per.setDni(jTextDni.getText());
+                controlador.per.setDni(jTextDni.getText());
                 try {
-                    if (null == objDom.per.getDni()) {
+                    if (null == controlador.per.getDni()) {
                         jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
                         jLabelLlenarAll.setText("No existe base de datos");
                         jLabelLlenarAll.setVisible(true);
                     } else {
                         if (!validarPersonaExistente()) {
                             int selected = 0;
-                            if (objDom.p.getSexo().equals("Masculino")) {
-                            selected = 0;
-                        } else if (objDom.p.getSexo().equals("Femenino")) {
-                            selected = 1;
-                        }
-                            jTextNombre.setText(objDom.p.getNombre());
+                            if (controlador.p.getSexo().equals("Masculino")) {
+                                selected = 0;
+                            } else if (controlador.p.getSexo().equals("Femenino")) {
+                                selected = 1;
+                            }
+                            jTextNombre.setText(controlador.p.getNombre());
                             jTextNombre.setEnabled(true);
-                            jTextApellido.setText(objDom.p.getApellido());
+                            jTextApellido.setText(controlador.p.getApellido());
                             jTextApellido.setEnabled(true);
-                            jTextEdad.setText(objDom.p.getEdad());
+                            jTextEdad.setText(controlador.p.getEdad());
                             jTextEdad.setEnabled(true);
-                            jTextNacionalidad.setText(objDom.p.getNacionalidad());
+                            jTextNacionalidad.setText(controlador.p.getNacionalidad());
                             jTextNacionalidad.setEnabled(true);
                             jComboBoxSexo.setSelectedIndex(selected);
                             jComboBoxSexo.setEnabled(true);
@@ -235,12 +235,6 @@ public class Edicion extends javax.swing.JFrame {
                 jTextDni.getText(), jTextEdad.getText(), jTextNacionalidad.getText())) {
             if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
 
-                objDom.per.setNombre(jTextNombre.getText());
-                objDom.per.setApellido(jTextApellido.getText());
-                objDom.per.setDni(jTextDni.getText());
-                objDom.per.setEdad(jTextEdad.getText());
-                objDom.per.setNacionalidad(jTextNacionalidad.getText());
-                objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
                 this.dispose();
             }//Fin segundo if
         }//Fin primer if
@@ -312,8 +306,8 @@ public class Edicion extends javax.swing.JFrame {
     }
 
     private boolean validarPersonaExistente() throws IOException, JDOMException {
-        objDom.getPersons();
-        if (objDom.getFind()) {
+        controlador.getPersons();
+        if (controlador.getFind()) {
             jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
             jLabelLlenarAll.setText("Coloque los nuevos datos");
             jLabelLlenarAll.setVisible(true);

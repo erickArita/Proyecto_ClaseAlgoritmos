@@ -3,8 +3,14 @@ package Proyecto;
 import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jdom2.JDOMException;
 
 public class Eliminacion extends javax.swing.JFrame {
+
+    Controlador controlador = new Controlador();
 
     public Eliminacion() {
         this.setUndecorated(true);
@@ -168,20 +174,48 @@ public class Eliminacion extends javax.swing.JFrame {
     private void btnFind_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind_DeleteActionPerformed
         if (validarDatosVacios(jTextDni.getText())) {
             if (validarNumeros(jTextDni.getText())) {
-                jTextEdad.setEnabled(true);
-                jTextNacionalidad.setEnabled(true);
-                jComboBoxSexo.setEnabled(true);
-
-                btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona.png"))); // NOI18N
-                btnFind_Delete.setText("Eliminar");
-                jLabelLlenarAll.setText("Presione eliminar");
-                jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-                jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
-                btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        btnFind_DeleteActionPerformedDel(evt);
+                controlador.per.setDni(jTextDni.getText());
+                if (null == controlador.per.getDni()) {
+                    jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+                    jLabelLlenarAll.setText("No existe base de datos");
+                    jLabelLlenarAll.setVisible(true);
+                } else {
+                    try {
+                        if (!validarPersonaExistente()) {
+                            int selected = 0;
+                            if (controlador.p.getSexo().equals("Masculino")) {
+                                selected = 0;
+                            } else if (controlador.p.getSexo().equals("Femenino")) {
+                                selected = 1;
+                            }
+                            jTextNombre.setText(controlador.p.getNombre());
+                            jTextNombre.setEnabled(true);
+                            jTextApellido.setText(controlador.p.getApellido());
+                            jTextApellido.setEnabled(true);
+                            jTextEdad.setText(controlador.p.getEdad());
+                            jTextEdad.setEnabled(true);
+                            jTextNacionalidad.setText(controlador.p.getNacionalidad());
+                            jTextNacionalidad.setEnabled(true);
+                            jComboBoxSexo.setSelectedIndex(selected);
+                            jComboBoxSexo.setEnabled(true);
+                            
+                            btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEliminarPersona.png"))); // NOI18N
+                            btnFind_Delete.setText("Eliminar");
+                            btnFind_Delete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEliminarPersona2.png"))); // NOI18N
+                            jLabelLlenarAll.setText("Presione eliminar");
+                            btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
+                                @Override
+                                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                    btnFind_DeleteActionPerformedDel(evt);
+                                }
+                            });
+                        }
+                    } catch (IOException | JDOMException ex) {
+                        Logger.getLogger(Eliminacion.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                });
+                }
+
+                
             }
         }
     }//GEN-LAST:event_btnFind_DeleteActionPerformed
@@ -191,7 +225,7 @@ public class Eliminacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnFind_DeleteActionPerformedDel(java.awt.event.ActionEvent ev) {
-        this.dispose();
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -228,12 +262,27 @@ public class Eliminacion extends javax.swing.JFrame {
     }
 
     private boolean validarNumeros(String text) {
-       if (text.matches("[0-9]*")) {
+        if (text.matches("[0-9]*")) {
             return true;
         } else {
             jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
             jLabelLlenarAll.setText("Datos Incorrectos");
             return false;
+        }
+    }
+
+    private boolean validarPersonaExistente() throws IOException, JDOMException {
+        controlador.getPersons();
+        if (controlador.getFind()) {
+            jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+            jLabelLlenarAll.setText("Coloque los nuevos datos");
+            jLabelLlenarAll.setVisible(true);
+            return false;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Persona no encontrada");
+            jLabelLlenarAll.setVisible(true);
+            return true;
         }
     }
 }

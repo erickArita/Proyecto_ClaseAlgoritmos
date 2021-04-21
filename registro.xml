@@ -8,4 +8,12 @@
     <Sexo>Masculino</Sexo>
     <Nacionalidad>Honduras</Nacionalidad>
   </persona>
+  <persona>
+    <Nombre>Erick</Nombre>
+    <Apellido>Arita</Apellido>
+    <Dni>0421</Dni>
+    <Edad>19</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>Honduras</Nacionalidad>
+  </persona>
 </Personas>
