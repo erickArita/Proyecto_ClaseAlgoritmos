@@ -167,20 +167,22 @@ public class Eliminacion extends javax.swing.JFrame {
 
     private void btnFind_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFind_DeleteActionPerformed
         if (validarDatosVacios(jTextDni.getText())) {
-            jTextEdad.setEnabled(true);
-            jTextNacionalidad.setEnabled(true);
-            jComboBoxSexo.setEnabled(true);
+            if (validarNumeros(jTextDni.getText())) {
+                jTextEdad.setEnabled(true);
+                jTextNacionalidad.setEnabled(true);
+                jComboBoxSexo.setEnabled(true);
 
-            btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona.png"))); // NOI18N
-            btnFind_Delete.setText("Eliminar");
-            jLabelLlenarAll.setText("Presione eliminar");
-            jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
-            btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    btnFind_DeleteActionPerformedDel(evt);
-                }
-            });
+                btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona.png"))); // NOI18N
+                btnFind_Delete.setText("Eliminar");
+                jLabelLlenarAll.setText("Presione eliminar");
+                jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+                jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));
+                btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        btnFind_DeleteActionPerformedDel(evt);
+                    }
+                });
+            }
         }
     }//GEN-LAST:event_btnFind_DeleteActionPerformed
 
@@ -222,6 +224,16 @@ public class Eliminacion extends javax.swing.JFrame {
             jLabelLlenarAll.setText("Escriba los nuevos datos");
             jLabelLlenarAll.setVisible(true);
             return true;
+        }
+    }
+
+    private boolean validarNumeros(String text) {
+       if (text.matches("[0-9]*")) {
+            return true;
+        } else {
+            jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+            jLabelLlenarAll.setText("Datos Incorrectos");
+            return false;
         }
     }
 }
