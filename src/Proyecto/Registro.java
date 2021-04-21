@@ -10,8 +10,9 @@ import org.jdom2.JDOMException;
 
 public class Registro extends javax.swing.JFrame {
 
-    //Objeto GeneradorDOM
-    GeneradorDOM objDom = new GeneradorDOM();
+    //Objeto Controlador
+    Controlador objDom = new Controlador();
+
     public Registro() {
         this.setUndecorated(true);
         initComponents();
@@ -180,19 +181,20 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRegistroActionPerformed
-   if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
+        if (validarDatosVacios(jTextNombre.getText(), jTextApellido.getText(),
                 jTextNacionalidad.getText(), jTextEdad.getText(), jTextDni.getText())) {
             if (validarNumeros(jTextDni.getText(), jTextEdad.getText())) {
-
+                objDom = new Controlador();
                 try {
+                    System.out.println(objDom.per.getDni());
+                    objDom.per.setDni(jTextDni.getText());
+                    objDom.per.setEdad(jTextEdad.getText());
+                    objDom.per.setNombre(jTextNombre.getText());
+                    objDom.per.setApellido(jTextApellido.getText());
+                    objDom.per.setNacionalidad(jTextNacionalidad.getText());
+                    objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
                     //Si no se ha ingresado alguna persona, no valida si existe.
                     if (null == objDom.per.getDni()) {
-                        objDom.per.setDni(jTextDni.getText());
-                        objDom.per.setEdad(jTextEdad.getText());
-                        objDom.per.setNombre(jTextNombre.getText());
-                        objDom.per.setApellido(jTextApellido.getText());
-                        objDom.per.setNacionalidad(jTextNacionalidad.getText());
-                        objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
                         jTextNombre.setText("");
                         jTextApellido.setText("");
                         jTextNacionalidad.setText("");
@@ -200,15 +202,8 @@ public class Registro extends javax.swing.JFrame {
                         jTextDni.setText("");
                         objDom.initElementsFile();
                         objDom.addPerson();
-                        
+
                     } else {
-                        objDom.per.setDni(jTextDni.getText());
-                        objDom.per.setEdad(jTextEdad.getText());
-                        objDom.per.setNombre(jTextNombre.getText());
-                        objDom.per.setApellido(jTextApellido.getText());
-                        objDom.per.setNacionalidad(jTextNacionalidad.getText());
-                        objDom.per.setSexo(jComboBoxSexo.getSelectedItem().toString());
-                        objDom.per.setAuxDni(objDom.per.getDni());
                         if (validarPersonaExistente()) {
 
                             jTextNombre.setText("");
@@ -303,6 +298,7 @@ public class Registro extends javax.swing.JFrame {
 
     private boolean validarPersonaExistente() throws IOException, JDOMException {
         objDom.getPersons();
+
         if (objDom.getFind()) {
             jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
             jLabelLlenarAll.setText("Esta persona ya existe");

@@ -11,7 +11,7 @@ import org.jdom2.JDOMException;
 public class Edicion extends javax.swing.JFrame {
 
     Registro regi = new Registro();
-    GeneradorDOM objDom = new GeneradorDOM();
+    Controlador objDom = new Controlador();
 
     public Edicion() {
         this.setUndecorated(true);
@@ -187,27 +187,24 @@ public class Edicion extends javax.swing.JFrame {
                     } else {
                         if (!validarPersonaExistente()) {
                             int selected = 0;
-                            /*if (objDom.per.getSexo().equals("Masculino")) {
+                            if (objDom.p.getSexo().equals("Masculino")) {
+                            selected = 0;
+                        } else if (objDom.p.getSexo().equals("Femenino")) {
                             selected = 1;
-                        } else if (objDom.per.getSexo().equals("Femenino")) {
-                            selected = 2;
-                        }*/
-                            jTextNombre.setText(objDom.per.getNombre());
+                        }
+                            jTextNombre.setText(objDom.p.getNombre());
                             jTextNombre.setEnabled(true);
-                            jTextApellido.setText(objDom.per.getApellido());
+                            jTextApellido.setText(objDom.p.getApellido());
                             jTextApellido.setEnabled(true);
-                            jTextEdad.setText(objDom.per.getEdad());
+                            jTextEdad.setText(objDom.p.getEdad());
                             jTextEdad.setEnabled(true);
-                            jTextNacionalidad.setText(objDom.per.getNacionalidad());
+                            jTextNacionalidad.setText(objDom.p.getNacionalidad());
                             jTextNacionalidad.setEnabled(true);
                             jComboBoxSexo.setSelectedIndex(selected);
                             jComboBoxSexo.setEnabled(true);
                             btnEdit_Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona.png"))); // NOI18N
                             btnEdit_Save.setText("Guardar");
-                            btnEdit_Save.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
                             btnEdit_Save.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnEditPersona2.png"))); // NOI18N
-                            btnEdit_Save.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
                             btnEdit_Save.addActionListener(new java.awt.event.ActionListener() {
                                 @Override
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {

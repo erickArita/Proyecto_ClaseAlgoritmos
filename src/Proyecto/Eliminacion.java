@@ -172,14 +172,6 @@ public class Eliminacion extends javax.swing.JFrame {
         btnFind_Delete.setForeground(new java.awt.Color(249, 255, 255));
         btnFind_Delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona.png"))); // NOI18N
         btnFind_Delete.setText("Eliminar");
-        btnFind_Delete.setBorderPainted(false);
-        btnFind_Delete.setContentAreaFilled(false);
-        btnFind_Delete.setFocusPainted(false);
-        btnFind_Delete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnFind_Delete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Proyecto/images/btnAddPersona2.png"))); // NOI18N
-        btnFind_Delete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabelMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelMessage.setForeground(new java.awt.Color(255, 45, 0));
         jLabelMessage.setText("Presione eliminar");
         jLabelMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, 350, 30));

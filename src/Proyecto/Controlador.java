@@ -14,7 +14,7 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-public class GeneradorDOM {
+public class Controlador {
 
     private XMLOutputter xml;
     private Element personas = new Element("Personas");
@@ -22,6 +22,7 @@ public class GeneradorDOM {
     private Boolean find = false;
     //Objeto Clase Persona    
     public Persona per = new Persona();
+    public Persona p = new Persona();
 
     public Boolean getFind() {
         return find;
@@ -30,7 +31,6 @@ public class GeneradorDOM {
     public void setFind(Boolean find) {
         this.find = find;
     }
-
 
     public void initElementsFile() throws IOException, JDOMException {
 
@@ -48,6 +48,9 @@ public class GeneradorDOM {
 //Metodo para agregar persona desde Registro.
 
     public void addPerson() throws IOException {
+        System.out.println(per.getNombre());
+        System.out.println(per.getApellido());
+        System.out.println(per.getNacionalidad());
 
         Element nombre = new Element("Nombre");
         nombre.setText(per.getNombre());
@@ -103,27 +106,28 @@ public class GeneradorDOM {
 
             personaObject.setNombre(atributesList.get(0));
             personaObject.setApellido(atributesList.get(1));
-            personaObject.setDni(atributesList.get(2));
-            if ((per.getDni()).equals(atributesList.get(2)) ) {
-                setFind(true);
-            }
-            
             personaObject.setEdad(atributesList.get(3));
             personaObject.setSexo(atributesList.get(4));
             personaObject.setNacionalidad(atributesList.get(5));
+            personaObject.setDni(atributesList.get(2));
+            
+            if (per.getDni() != null && (per.getDni()).equals(atributesList.get(2))) {
+                setFind(true);
+                setPersonaObjectToPer(personaObject);
+            }
+
 
             personList.add(personaObject);
-            setPersonaObjectToPer(personaObject);
         }
         return personList;
     }
 
     private void setPersonaObjectToPer(Persona personaObject) {
-        per.setNombre(personaObject.getNombre());
-        per.setApellido(personaObject.getApellido());
-        per.setEdad(personaObject.getEdad());
-        per.setNacionalidad(personaObject.getNacionalidad());
-        per.setSexo(personaObject.getSexo());
-        
+        p.setNombre(personaObject.getNombre());
+        p.setApellido(personaObject.getApellido());
+        p.setEdad(personaObject.getEdad());
+        p.setNacionalidad(personaObject.getNacionalidad());
+        p.setSexo(personaObject.getSexo());
+
     }
 }

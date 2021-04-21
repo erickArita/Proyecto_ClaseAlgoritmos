@@ -5,24 +5,34 @@ import java.awt.Shape;
 import javax.swing.table.DefaultTableModel;
 import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdom2.JDOMException;
 
 public class Consulta extends javax.swing.JFrame {
 
-    GeneradorDOM objDom = new GeneradorDOM();
     DefaultTableModel model = new DefaultTableModel();
-   
+    Controlador dom = new Controlador();
 
-    public Consulta() {
+    public Consulta() throws IOException, JDOMException {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         Shape roundEdges = new RoundRectangle2D.Double(0, 0, this.getBounds().width, this.getBounds().height, 50, 50);
         AWTUtilities.setWindowShape(this, roundEdges);
+        llenarTabla();
+    }
+
+    private void llenarTabla() throws IOException, JDOMException {
+
+        dom.getPersons().forEach((person) -> 
+            model.addRow(new Object[]{
+                person.getNombre(),
+                person.getApellido(),
+                person.getDni(),
+                person.getEdad(),
+                person.getSexo(),
+                person.getNacionalidad()}
+            )
+        );
     }
 
     @SuppressWarnings("unchecked")
@@ -60,16 +70,26 @@ public class Consulta extends javax.swing.JFrame {
         jLabelConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanelPrincipal.add(jLabelConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1000, 60));
 
+        jScrollPane2.setBackground(new java.awt.Color(255, 51, 51));
+
+        tabla.setBackground(new java.awt.Color(84, 91, 109));
+        tabla.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tabla.setForeground(new java.awt.Color(249, 255, 255));
+        tabla.setModel(model
+        );
         model.addColumn("Nombre");
         model.addColumn("Apellido");
         model.addColumn("DNI");
         model.addColumn("Edad");
         model.addColumn("Sexo");
         model.addColumn("Nacionalidad");
-        tabla.setModel(model);
+        tabla.setEnabled(false);
+        tabla.setGridColor(new java.awt.Color(255, 255, 255));
+        tabla.setRowHeight(50);
+        tabla.setSelectionBackground(new java.awt.Color(37, 35, 49));
         jScrollPane2.setViewportView(tabla);
 
-        jPanelPrincipal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 940, -1));
+        jPanelPrincipal.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 960, -1));
 
         getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 600));
 
@@ -88,6 +108,5 @@ public class Consulta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
-
 
 }
