@@ -149,8 +149,9 @@ public class Eliminacion extends javax.swing.JFrame {
         jPanel1.add(jTextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
 
         jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
-        jLabelLlenarAll.setText("Rellene los datos de la persona a eliminar");
+        jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
+        jLabelLlenarAll.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLlenarAll.setText("Busqueda por DNI");
         jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 360, 30));
 

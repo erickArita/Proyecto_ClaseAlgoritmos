@@ -8,15 +8,8 @@ public class Persona {
     private String sexo;
     private String dni;
     private String edad;
-    private String auxDni;
+ 
 
-    public String getAuxDni() {
-        return auxDni;
-    }
-
-    public void setAuxDni(String auxDni) {
-        this.auxDni = auxDni;
-    }
     
 
     public String getNombre() {

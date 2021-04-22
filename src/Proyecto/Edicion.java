@@ -163,9 +163,9 @@ public class Edicion extends javax.swing.JFrame {
         jPanel1.add(jTextDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 350, -1));
 
         jLabelLlenarAll.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelLlenarAll.setForeground(new java.awt.Color(255, 45, 0));
+        jLabelLlenarAll.setForeground(new java.awt.Color(51, 216, 78));
         jLabelLlenarAll.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLlenarAll.setText("Rellene todos los datos");
+        jLabelLlenarAll.setText("Busqueda por DNI");
         jLabelLlenarAll.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabelLlenarAll.setVisible(false);
         jPanel1.add(jLabelLlenarAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 510, 350, 30));
