@@ -230,7 +230,6 @@ public class Edicion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnEdit_SaveActionPerformedSave(java.awt.event.ActionEvent evt) throws IOException, JDOMException {
-
         if (validarDatosVacios2(jTextNombre.getText(), jTextApellido.getText(),
                 jTextDni.getText(), jTextEdad.getText(), jTextNacionalidad.getText())) {
             if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
@@ -242,9 +241,10 @@ public class Edicion extends javax.swing.JFrame {
                 person.setNacionalidad(jTextNacionalidad.getText());
                 person.setSexo(jComboBoxSexo.getSelectedItem().toString());
                 controlador.updatePerson(person);
-                this.dispose();
+                
             }//Fin segundo if
         }//Fin primer if
+    this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
