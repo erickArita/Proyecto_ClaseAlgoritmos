@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -17,7 +19,7 @@ import org.jdom2.output.XMLOutputter;
 public class Controlador {
 
     private XMLOutputter xml;
-    private Element personas = new Element("Personas");
+    private Element root = new Element("Personas");
     private Document doc = null;
     private Boolean find = false;
     //Objeto Clase Persona    
@@ -39,7 +41,7 @@ public class Controlador {
         if (xmlFile.exists()) {
             SAXBuilder builder = new SAXBuilder();
             doc = builder.build(new FileInputStream(xmlFile));
-            personas = doc.detachRootElement();
+            root = doc.detachRootElement();
         } else {
             doc = new Document();
         }
@@ -48,7 +50,7 @@ public class Controlador {
 //Metodo para agregar persona desde Registro.
 
     public void addPerson() throws IOException {
-        
+
         Element nombre = new Element("Nombre");
         nombre.setText(per.getNombre());
 
@@ -76,9 +78,9 @@ public class Controlador {
         persona.addContent(sexo);
         persona.addContent(nacionalidad);
 
-        personas.addContent(persona);
+        root.addContent(persona);
 
-        doc.addContent(personas);
+        doc.addContent(root);
 
         xml = new XMLOutputter();
         xml.setFormat(Format.getPrettyFormat());
@@ -88,7 +90,7 @@ public class Controlador {
 
     public ArrayList<Persona> getPersons() throws IOException, JDOMException {
         initElementsFile();
-        List<Element> persona = personas.getChildren();
+        List<Element> persona = root.getChildren();
         ArrayList<Persona> personList = new ArrayList();
 
         for (Element personaAtributes : persona) {
@@ -107,13 +109,12 @@ public class Controlador {
             personaObject.setSexo(atributesList.get(4));
             personaObject.setNacionalidad(atributesList.get(5));
             personaObject.setDni(atributesList.get(2));
-            
+
             if (per.getDni() != null && (per.getDni()).equals(atributesList.get(2))) {
                 setFind(true);
                 setPersonaObjectToPer(personaObject);
                 
             }
-
 
             personList.add(personaObject);
         }
@@ -127,5 +128,46 @@ public class Controlador {
         p.setNacionalidad(personaObject.getNacionalidad());
         p.setSexo(personaObject.getSexo());
 
+    }
+
+    public void updatePerson(Persona person) throws IOException, JDOMException {
+        initElementsFile();
+
+        List<Element> persona = root.getChildren();
+
+        for (Element personaAtributes : persona) {
+
+            String dniChild = personaAtributes.getChildText("Dni");
+            if (person.getDni().equals(dniChild)) {
+                personaAtributes.getChild("Nombre").setText(person.getNombre());
+                personaAtributes.getChild("Apellido").setText(person.getApellido());
+                personaAtributes.getChild("Dni").setText(person.getDni());
+                personaAtributes.getChild("Edad").setText(person.getEdad());
+                personaAtributes.getChild("Sexo").setText(person.getSexo());
+                personaAtributes.getChild("Nacionalidad").setText(person.getNacionalidad());
+
+            }
+        }
+
+        doc.setContent(root);
+        xml = new XMLOutputter();
+        xml.setFormat(Format.getPrettyFormat());
+        xml.output(doc, new FileWriter("registro.xml"));
+    }
+
+    public void deletePerson(String dniTofind) throws IOException, JDOMException {
+        initElementsFile();
+        List<Element> persona = root.getChildren();
+        for (Element personaAtributes : persona) {
+            String dni = personaAtributes.getChildText("Dni");
+            if (dniTofind.equals(dni)) {
+                root.removeContent(personaAtributes);
+            }
+        }
+        doc.setContent(root);
+        xml = new XMLOutputter();
+        xml.setFormat(Format.getPrettyFormat());
+        xml.output(doc, new FileWriter("registro.xml"));
+//      
     }
 }

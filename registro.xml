@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Personas>
   <persona>
-    <Nombre>Emilzon</Nombre>
-    <Apellido>Jeronimo</Apellido>
-    <Dni>55432</Dni>
-    <Edad>20</Edad>
-    <Sexo>Masculino</Sexo>
-    <Nacionalidad>Honduras</Nacionalidad>
-  </persona>
-  <persona>
     <Nombre>Erick</Nombre>
     <Apellido>Arita</Apellido>
-    <Dni>0421</Dni>
+    <Dni>55</Dni>
     <Edad>19</Edad>
     <Sexo>Masculino</Sexo>
-    <Nacionalidad>Honduras</Nacionalidad>
+    <Nacionalidad>Internet</Nacionalidad>
   </persona>
   <persona>
     <Nombre>Acxel</Nombre>
