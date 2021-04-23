@@ -235,6 +235,7 @@ public class Eliminacion extends javax.swing.JFrame {
 
     private void btnFind_DeleteActionPerformedDel(java.awt.event.ActionEvent ev) throws IOException, JDOMException {
         controlador.deletePerson(jTextDni.getText());
+        this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

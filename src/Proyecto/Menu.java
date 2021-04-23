@@ -6,7 +6,6 @@ import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.WindowConstants;
@@ -15,8 +14,8 @@ import org.jdom2.JDOMException;
 public class Menu extends javax.swing.JFrame {
 
     int x, y;
-    Menu m;
-
+    App app = new App();
+    
     public Menu() {
         this.setUndecorated(true);
         initComponents();
@@ -199,7 +198,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelBarraMouseDragged
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        new Edicion().setVisible(true);
+        try {
+            new Edicion().setVisible(true);
+        } catch (IOException | JDOMException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

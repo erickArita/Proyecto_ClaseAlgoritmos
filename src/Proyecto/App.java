@@ -6,7 +6,8 @@ import java.io.IOException;
 public class App {
   
     public static void main(String[] args) throws IOException {
-        new Menu().setVisible(true);
+        Menu m = new Menu();
+        m.setVisible(true);
     }
 
 }

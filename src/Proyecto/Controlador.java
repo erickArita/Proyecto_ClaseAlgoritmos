@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -114,6 +112,7 @@ public class Controlador {
             if (per.getDni() != null && (per.getDni()).equals(atributesList.get(2))) {
                 setFind(true);
                 setPersonaObjectToPer(personaObject);
+                
             }
 
             personList.add(personaObject);
@@ -155,10 +154,10 @@ public class Controlador {
     public void deletePerson(String dniTofind) throws IOException, JDOMException {
         readFile();
         List<Element> persona = root.getChildren();
-        for (Element personaAtributes : persona) {
-            String dni = personaAtributes.getChildText("Dni");
+        for (Element personaDatos : persona) {
+            String dni = personaDatos.getChildText("Dni");
             if (dniTofind.equals(dni)) {
-                root.removeContent(personaAtributes);
+                root.removeContent(personaDatos);
             }
         }
         whiteFile();
