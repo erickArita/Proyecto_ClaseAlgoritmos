@@ -156,10 +156,10 @@ public class Controlador {
     public void deletePerson(String dniTofind) throws IOException, JDOMException {
         initElementsFile();
         List<Element> persona = root.getChildren();
-        for (Element personaAtributes : persona) {
-            String dni = personaAtributes.getChildText("Dni");
+        for (Element personaDatos : persona) {
+            String dni = personaDatos.getChildText("Dni");
             if (dniTofind.equals(dni)) {
-                root.removeContent(personaAtributes);
+                root.removeContent(personaDatos);
             }
         }
         doc.setContent(root);
