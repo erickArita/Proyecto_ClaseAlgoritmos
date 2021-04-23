@@ -111,6 +111,7 @@ public class Controlador {
             if (per.getDni() != null && (per.getDni()).equals(atributesList.get(2))) {
                 setFind(true);
                 setPersonaObjectToPer(personaObject);
+                
             }
 
 

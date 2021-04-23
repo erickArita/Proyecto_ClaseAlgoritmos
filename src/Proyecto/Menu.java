@@ -15,8 +15,7 @@ import org.jdom2.JDOMException;
 public class Menu extends javax.swing.JFrame {
 
     int x, y;
-    Menu m;
-
+    App app = new App();
     public Menu() {
         this.setUndecorated(true);
         initComponents();
@@ -181,7 +180,7 @@ public class Menu extends javax.swing.JFrame {
 
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        this.dispose();
+        m.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed

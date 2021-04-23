@@ -16,4 +16,12 @@
     <Sexo>Masculino</Sexo>
     <Nacionalidad>Honduras</Nacionalidad>
   </persona>
+  <persona>
+    <Nombre>Acxel</Nombre>
+    <Apellido>Jeronimo</Apellido>
+    <Dni>1234</Dni>
+    <Edad>12</Edad>
+    <Sexo>Masculino</Sexo>
+    <Nacionalidad>Honduras</Nacionalidad>
+  </persona>
 </Personas>
