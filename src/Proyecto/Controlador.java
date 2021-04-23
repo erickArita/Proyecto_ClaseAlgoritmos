@@ -34,7 +34,7 @@ public class Controlador {
         this.find = find;
     }
 
-    public void initElementsFile() throws IOException, JDOMException {
+    public void readFile() throws IOException, JDOMException {
 
         File xmlFile = new File("registro.xml");
 
@@ -89,7 +89,7 @@ public class Controlador {
     }
 
     public ArrayList<Persona> getPersons() throws IOException, JDOMException {
-        initElementsFile();
+        readFile();
         List<Element> persona = root.getChildren();
         ArrayList<Persona> personList = new ArrayList();
 
@@ -110,6 +110,7 @@ public class Controlador {
             personaObject.setNacionalidad(atributesList.get(5));
             personaObject.setDni(atributesList.get(2));
 
+//            se usa cuando modificamo o eliminamos algo para cer lo que vamos a modificar
             if (per.getDni() != null && (per.getDni()).equals(atributesList.get(2))) {
                 setFind(true);
                 setPersonaObjectToPer(personaObject);
@@ -130,7 +131,7 @@ public class Controlador {
     }
 
     public void updatePerson(Persona person) throws IOException, JDOMException {
-        initElementsFile();
+        readFile();
 
         List<Element> persona = root.getChildren();
 
@@ -148,14 +149,11 @@ public class Controlador {
             }
         }
 
-        doc.setContent(root);
-        xml = new XMLOutputter();
-        xml.setFormat(Format.getPrettyFormat());
-        xml.output(doc, new FileWriter("registro.xml"));
+        whiteFile();
     }
 
     public void deletePerson(String dniTofind) throws IOException, JDOMException {
-        initElementsFile();
+        readFile();
         List<Element> persona = root.getChildren();
         for (Element personaAtributes : persona) {
             String dni = personaAtributes.getChildText("Dni");
@@ -163,10 +161,14 @@ public class Controlador {
                 root.removeContent(personaAtributes);
             }
         }
+        whiteFile();
+//      
+    }
+
+    private void whiteFile() throws IOException {
         doc.setContent(root);
         xml = new XMLOutputter();
         xml.setFormat(Format.getPrettyFormat());
         xml.output(doc, new FileWriter("registro.xml"));
-//      
     }
 }

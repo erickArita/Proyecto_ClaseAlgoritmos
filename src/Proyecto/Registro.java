@@ -200,7 +200,7 @@ public class Registro extends javax.swing.JFrame {
                         jTextNacionalidad.setText("");
                         jTextEdad.setText("");
                         jTextDni.setText("");
-                        objDom.initElementsFile();
+                        objDom.readFile();
                         objDom.addPerson();
 
                     } else {
@@ -214,7 +214,7 @@ public class Registro extends javax.swing.JFrame {
 
                             //Va a escribir al documento.
                             try {
-                                objDom.initElementsFile();
+                                objDom.readFile();
                             } catch (IOException | JDOMException ex) {
                                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
                             }
