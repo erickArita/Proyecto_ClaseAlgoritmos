@@ -13,7 +13,7 @@ public class Edicion extends javax.swing.JFrame {
     Registro regi = new Registro();
     Controlador controlador = new Controlador();
 
-    public Edicion() {
+    public Edicion() throws IOException, JDOMException {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -234,7 +234,14 @@ public class Edicion extends javax.swing.JFrame {
         if (validarDatosVacios2(jTextNombre.getText(), jTextApellido.getText(),
                 jTextDni.getText(), jTextEdad.getText(), jTextNacionalidad.getText())) {
             if (validarNumeros2(jTextDni.getText(), jTextEdad.getText())) {
-
+                Persona person = controlador.p;
+                person.setNombre(jTextNombre.getText());
+                person.setApellido(jTextApellido.getText());
+                person.setEdad(jTextEdad.getText());
+                person.setDni(jTextDni.getText());
+                person.setNacionalidad(jTextNacionalidad.getText());
+                person.setSexo(jComboBoxSexo.getSelectedItem().toString());
+                controlador.updatePerson(person);
                 this.dispose();
             }//Fin segundo if
         }//Fin primer if

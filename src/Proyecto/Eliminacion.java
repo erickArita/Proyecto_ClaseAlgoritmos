@@ -207,7 +207,15 @@ public class Eliminacion extends javax.swing.JFrame {
                             btnFind_Delete.addActionListener(new java.awt.event.ActionListener() {
                                 @Override
                                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                    btnFind_DeleteActionPerformedDel(evt);
+                                    try {  
+                                        btnFind_DeleteActionPerformedDel(evt);
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Eliminacion.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (JDOMException ex) {
+                                        Logger.getLogger(Eliminacion.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                     
+                                    
                                 }
                             });
                         }
@@ -225,8 +233,8 @@ public class Eliminacion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void btnFind_DeleteActionPerformedDel(java.awt.event.ActionEvent ev) {
-        
+    private void btnFind_DeleteActionPerformedDel(java.awt.event.ActionEvent ev) throws IOException, JDOMException {
+        controlador.deletePerson(jTextDni.getText());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
